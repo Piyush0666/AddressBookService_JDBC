@@ -34,5 +34,4 @@ public class DBConnection {
             System.out.println(driverClass.getClass().getName());
         }
     }
-
 }

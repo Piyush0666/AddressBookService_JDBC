@@ -2,6 +2,7 @@ package com.bridgelabz.day35;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class AddressBookService {
     private List<AddressBookData> addressBookList;
@@ -37,12 +38,23 @@ public class AddressBookService {
     public boolean checkRecordSyncWithDB(String name) {
         List<AddressBookData> addressBookData= addressBookDBService.getAddressBookData(name);
         System.out.println(addressBookData);
-        boolean equals = addressBookData.get(0).equals(getAddressBookData(name));
-        return equals;
+        return addressBookData.get(0).equals(getAddressBookData(name));
     }
     public List<AddressBookData> readEmployeePayrollForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate) {
         if (ioService.equals(IOService.DB_IO)) {
             return addressBookDBService.getEmployeePayrollForDateRange(startDate, endDate);
+        }
+        return null;
+    }
+    public Map<String, Double> contactsByCity(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO)) {
+            return addressBookDBService.getCountOfContactsByCity();
+        }
+        return null;
+    }
+    public Map<String, Double> contactsByState(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO)) {
+            return addressBookDBService.getCountOfContactsByState();
         }
         return null;
     }

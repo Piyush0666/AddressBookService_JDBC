@@ -53,5 +53,4 @@ public class AddressBookData {
                 Objects.equals(state, that.state) &&
                 Objects.equals(zip, that.zip);
     }
-
 }
