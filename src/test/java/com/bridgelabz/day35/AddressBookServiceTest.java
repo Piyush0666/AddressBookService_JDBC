@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static com.bridgelabz.day35.AddressBookService.IOService.DB_IO;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,5 +33,23 @@ class AddressBookServiceTest
         LocalDate endDate = LocalDate.now();
         List< AddressBookData> employeePayrollData= addressBookService.readEmployeePayrollForDateRange(DB_IO, startDate, endDate);
         assertEquals(0,employeePayrollData.size());
+    }
+    @Test
+    public void givenCity_ShouldRetrieveTheNumberOfContacts_BasedOnCity() {
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        Map<String, Double> contactsByCity = addressBookService.contactsByCity(DB_IO);
+        System.out.println(contactsByCity.containsKey("Haryana")+" "+contactsByCity.containsValue(2.0));
+        assertTrue(contactsByCity.containsKey("Haryana") && contactsByCity.containsValue(2.0));
+    }
+
+    @Test
+    public void givenCity_ShouldRetrieveTheNumberOfContacts_BasedOnState() {
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        Map<String, Double> contactsByState = addressBookService.contactsByState(DB_IO);
+        System.out.println(contactsByState.containsKey("Ambala")+" "+contactsByState.containsValue(2.0));
+        assertTrue(contactsByState.containsKey("Ambala") &&
+                contactsByState.containsValue(2.0));
     }
 }
