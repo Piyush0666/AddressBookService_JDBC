@@ -1,6 +1,7 @@
 package com.bridgelabz.day35;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +99,11 @@ public class AddressBookDataBaseService
         }catch (SQLException e) {
             throw new AddressBookException(e.getMessage(), AddressBookException.ExceptionType.DatabaseException);
         }
+    }
+    public List<AddressBookData> getEmployeePayrollForDateRange(LocalDate startDate, LocalDate endDate) {
+        String query = String.format("SELECT * FROM addressBook WHERE date_added BETWEEN '%s' AND '%s';",
+                Date.valueOf(startDate), Date.valueOf(endDate));
+        return this.getAddressBookDataUsingDB(query);
     }
 }
 

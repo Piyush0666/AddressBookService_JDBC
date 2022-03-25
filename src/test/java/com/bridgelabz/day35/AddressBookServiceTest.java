@@ -2,6 +2,7 @@ package com.bridgelabz.day35;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.bridgelabz.day35.AddressBookService.IOService.DB_IO;
@@ -22,5 +23,14 @@ class AddressBookServiceTest
         addressBookService.updateRecord("Piyush", "9910936991");
         boolean result = addressBookService.checkRecordSyncWithDB("Piyush");
         assertTrue(result);
+    }
+    @Test
+    public void givenDate_ShouldRetrieveTheAddressBookRecord_BasedOnTheParticularRange() {
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        LocalDate startDate = LocalDate.of(2018, 1, 1);
+        LocalDate endDate = LocalDate.now();
+        List< AddressBookData> employeePayrollData= addressBookService.readEmployeePayrollForDateRange(DB_IO, startDate, endDate);
+        assertEquals(0,employeePayrollData.size());
     }
 }
