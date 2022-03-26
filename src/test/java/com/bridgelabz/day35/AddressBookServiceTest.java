@@ -29,10 +29,10 @@ class AddressBookServiceTest
     public void givenDate_ShouldRetrieveTheAddressBookRecord_BasedOnTheParticularRange() {
         AddressBookService addressBookService = new AddressBookService();
         addressBookService.readAddressBookData(DB_IO);
-        LocalDate startDate = LocalDate.of(2018, 1, 1);
+        LocalDate startDate = LocalDate.of(2018, 01, 01);
         LocalDate endDate = LocalDate.now();
         List< AddressBookData> employeePayrollData= addressBookService.readEmployeePayrollForDateRange(DB_IO, startDate, endDate);
-        assertEquals(0,employeePayrollData.size());
+        assertEquals(5,employeePayrollData.size());
     }
     @Test
     public void givenCity_ShouldRetrieveTheNumberOfContacts_BasedOnCity() {
@@ -51,5 +51,14 @@ class AddressBookServiceTest
         System.out.println(contactsByState.containsKey("Ambala")+" "+contactsByState.containsValue(2.0));
         assertTrue(contactsByState.containsKey("Ambala") &&
                 contactsByState.containsValue(2.0));
+    }
+    @Test
+    public void givenNewContact_ShouldAddIntoTheAddressBookDataBase() {
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readAddressBookData(DB_IO);
+        addressBookService.addNewContact("YASH","VERMA","Family",
+                "9999999989","PALWAL","HARYNA","121004","yash@gmail.com",LocalDate.now());
+        boolean result = addressBookService.checkRecordSyncWithDB("YASH");
+        assertTrue(result);
     }
 }
