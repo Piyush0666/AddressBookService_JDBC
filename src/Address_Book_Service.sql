@@ -395,3 +395,18 @@ mysql> select type, Count(firstName) from contacts_relation group by type;
 | work   |                2 |
 +--------+------------------+
 3 rows in set (0.00 sec)
+
+//UC20 output
+Ability to Add new Contact to the AddressBook Database
+mysql> select * from addressBook;
++-----------+----------+---------+--------------+------------------+-----------+---------+--------+------------+
+| firstName | lastName | type    | mobileNumber | email            | city      | state   | zip    | date_added |
++-----------+----------+---------+--------------+------------------+-----------+---------+--------+------------+
+| Manisha   | Verma    | Family  | 931176564    | manu@gmail.com   | Haryana   | Ambala  | 121000 | 2018-01-01 |
+| Nikhil    | Bhatia   | Friend  | 9717714997   | nikhil@gmail.com | Haryana   | Ambala  | 121000 | 2018-01-01 |
+| Pankaj    | verma    | Student | 9871900840   | abc@gmail        | Faridabad | UP      | 121001 | 2018-01-01 |
+| Piyush    | Verma    | Family  | 9910936991   | piyush@gmail     | Faridabad | haryana | 121001 | 2018-01-01 |
+| Ramit     | Chauhan  | Friend  | 9987676554   | xyz@gmail        | Noida     | UP      | 121998 | 2020-01-01 |
+| YASH      | VERMA    | Family  | 9999999989   | yash@gmail.com   | PALWAL    | HARYNA  | 121004 | 2022-03-26 |
++-----------+----------+---------+--------------+------------------+-----------+---------+--------+------------+
+6 rows in set (0.00 sec)
